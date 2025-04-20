@@ -46,8 +46,9 @@ const projects = [
   },
 ];
 
-export default function BigTerminal() {
+export default function BigTerminal({ onGoToSkills }) {
   const [currentPage, setCurrentPage] = useState(0);
+  const [currentView, setCurrentView] = useState('spellbook'); // 'spellbook' or 'grid'
   const terminalRef = useRef(null);
 
   const handleNext = () => {
@@ -56,6 +57,7 @@ export default function BigTerminal() {
 
       if (nextPage === 0) {
         setTimeout(() => {
+          setCurrentView('grid'); // Switch to grid after flipping ends
           if (terminalRef.current) {
             terminalRef.current.scrollTo({ top: terminalRef.current.scrollHeight, behavior: 'smooth' });
           }
@@ -125,89 +127,89 @@ export default function BigTerminal() {
           Utkarsha's Magical Spellbook 📖✨
         </div>
 
-        {/* Spellbook Flipping */}
+        {/* Terminal Content */}
         <div className="flex flex-col items-center justify-center space-y-8 py-8">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentPage}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.4 }}
-              className={`p-8 w-[600px] h-[400px] flex flex-col items-center justify-center text-center shadow-2xl rounded-2xl ${project.color}`}
-            >
-              <div className="text-6xl mb-3">{project.emoji}</div>
-              <div className="text-2xl font-bold mb-2 text-gray-800">{project.title}</div>
-              <div className="text-md text-gray-600 mb-6">{project.tech}</div>
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-2 bg-pink-200 text-gray-800 rounded-full hover:bg-pink-300 transition text-md"
-              >
-                View Live 🚀
-              </a>
-            </motion.div>
-          </AnimatePresence>
 
-          {/* Navigation */}
-          <div className="flex space-x-8">
-            <button
-              onClick={handlePrevious}
-              className="px-6 py-2 bg-blue-200 text-gray-800 rounded-full hover:bg-blue-300 transition text-md"
-            >
-              ◀ Previous
-            </button>
-            <button
-              onClick={handleNext}
-              className="px-6 py-2 bg-green-200 text-gray-800 rounded-full hover:bg-green-300 transition text-md"
-            >
-              Next ▶
-            </button>
-          </div>
-        </div>
+          {currentView === 'spellbook' ? (
+            <>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentPage}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.4 }}
+                  className={`p-8 w-[600px] h-[400px] flex flex-col items-center justify-center text-center shadow-2xl rounded-2xl ${project.color}`}
+                >
+                  <div className="text-6xl mb-3">{project.emoji}</div>
+                  <div className="text-2xl font-bold mb-2 text-gray-800">{project.title}</div>
+                  <div className="text-md text-gray-600 mb-6">{project.tech}</div>
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-2 bg-pink-200 text-gray-800 rounded-full hover:bg-pink-300 transition text-md"
+                  >
+                    View Live 🚀
+                  </a>
+                </motion.div>
+              </AnimatePresence>
 
-        {/* Divider */}
-        <div className="border-t border-gray-700 mx-8 my-6"></div>
+              {/* Navigation */}
+              <div className="flex space-x-8">
+                <button
+                  onClick={handlePrevious}
+                  className="px-6 py-2 bg-blue-200 text-gray-800 rounded-full hover:bg-blue-300 transition text-md"
+                >
+                  ◀ Previous
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="px-6 py-2 bg-green-200 text-gray-800 rounded-full hover:bg-green-300 transition text-md"
+                >
+                  Next ▶
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Projects Grid */}
+              <div className="flex flex-wrap justify-center items-center gap-8 p-8">
+                {projects.map((project, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className={`w-[280px] h-[220px] flex flex-col items-center justify-center text-center shadow-2xl rounded-2xl ${project.color} p-4`}
+                  >
+                    <div className="text-4xl mb-2">{project.emoji}</div>
+                    <div className="text-lg font-bold text-gray-800 mb-1">{project.title}</div>
+                    <div className="text-sm text-gray-600 mb-3">{project.tech}</div>
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-pink-200 text-gray-800 rounded-full hover:bg-pink-300 transition text-sm"
+                    >
+                      View Live 🚀
+                    </a>
+                  </motion.div>
+                ))}
+              </div>
 
-        {/* Projects Grid */}
-        <div className="flex flex-wrap justify-center items-center gap-8 p-8">
-
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`w-[280px] h-[220px] flex flex-col items-center justify-center text-center shadow-2xl rounded-2xl ${project.color} p-4`}
-            >
-              <div className="text-4xl mb-2">{project.emoji}</div>
-              <div className="text-lg font-bold text-gray-800 mb-1">{project.title}</div>
-              <div className="text-sm text-gray-600 mb-3">{project.tech}</div>
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-pink-200 text-gray-800 rounded-full hover:bg-pink-300 transition text-sm"
-              >
-                View Live 🚀
-              </a>
-            </motion.div>
-          ))}
-
-        </div>
-
-        {/* Go to Skills */}
-        <div className="flex justify-center pb-10">
-          <button
-            onClick={() => {
-              window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-            }}
-            className="px-8 py-3 bg-green-200 hover:bg-green-300 text-gray-800 rounded-full font-bold text-lg transition"
-          >
-            Go to Skills 🚀
-          </button>
+              {/* Go to Skills */}
+              <div className="flex justify-center pb-10">
+                <button
+                  onClick={onGoToSkills}
+                  className="px-8 py-3 bg-green-200 hover:bg-green-300 text-gray-800 rounded-full font-bold text-lg transition"
+                >
+                  Go to Skills 🚀
+                </button>
+              </div>
+            </>
+          )}
         </div>
 
       </motion.div>
