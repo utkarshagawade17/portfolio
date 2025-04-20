@@ -40,7 +40,7 @@ export default function LandingPage({ onBeginJourney }) {
       />
 
       {/* Overlay Content */}
-      <div className="relative z-10 flex flex-col justify-center items-center h-full text-center text-white px-4">
+      <div className="relative z-10 flex flex-col justify-center items-center h-full text-center text-white px-4 pt-48">
         <h1 className="font-bold text-4xl md:text-6xl drop-shadow-lg mb-6">
           Hi, I'm Utkarsha 👩🏻‍💻
         </h1>
