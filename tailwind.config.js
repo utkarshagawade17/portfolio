@@ -14,7 +14,10 @@ module.exports = {
         'pastel-lavender': '#E6E6FA',
       },
       fontFamily: {
-        'handwritten': ['Caveat', 'sans-serif'],
+        handwritten: ['Caveat', 'cursive'],
+        serif: ['Playfair Display', 'serif'],
+        sans: ['Poppins', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
     },
   },

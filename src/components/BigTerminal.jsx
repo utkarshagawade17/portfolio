@@ -1,220 +1,140 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ProjectCard from './ProjectCard';
 
 const projects = [
   {
     title: "Magical Portfolio Website",
-    tech: "React.js, Tailwind CSS, Framer Motion",
-    liveLink: "https://your-magical-portfolio.com",
-    emoji: "✨",
-    color: "bg-pink-100",
+    description: "An animated portfolio showcasing magical UI journey.",
+    techStack: ["React.js", "Tailwind CSS", "Framer Motion"],
+    liveLink: "https://your-portfolio-link.com",
+    codeLink: "https://github.com/yourrepo/portfolio",
   },
   {
     title: "AI Blog Generator",
-    tech: "Node.js, Express, OpenAI API",
-    liveLink: "https://your-ai-blog-generator.com",
-    emoji: "📚",
-    color: "bg-yellow-100",
-  },
-  {
-    title: "UI/UX Design Showcase",
-    tech: "Figma, Adobe XD",
-    liveLink: "https://your-uiux-showcase.com",
-    emoji: "🎨",
-    color: "bg-purple-100",
-  },
-  {
-    title: "E-commerce App",
-    tech: "React, Redux, Firebase",
-    liveLink: "https://your-ecommerce-app.com",
-    emoji: "🛒",
-    color: "bg-green-100",
-  },
-  {
-    title: "Prompt to Media Generator",
-    tech: "React, Node.js, Stable Diffusion",
-    liveLink: "https://your-prompt-media-generator.com",
-    emoji: "🔮",
-    color: "bg-blue-100",
+    description: "Generated blog posts using OpenAI API and Node.js backend.",
+    techStack: ["Node.js", "Express.js", "OpenAI API"],
+    liveLink: "https://your-ai-blog.com",
+    codeLink: "https://github.com/yourrepo/aiblog",
   },
   {
     title: "Travel Explorer App",
-    tech: "Next.js, Tailwind, Mapbox",
+    description: "Explore new places using Mapbox, Next.js and Firebase.",
+    techStack: ["Next.js", "Mapbox", "Firebase"],
     liveLink: "https://your-travel-explorer.com",
-    emoji: "🌎",
-    color: "bg-orange-100",
+    codeLink: "https://github.com/yourrepo/travelexplorer",
   },
 ];
 
 export default function BigTerminal({ onBackToExperience, onGoToSkills }) {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [currentView, setCurrentView] = useState('spellbook'); // 'spellbook' or 'grid'
-  const terminalRef = useRef(null);
+  const [current, setCurrent] = useState(0);
+
+  const handlePrev = () => {
+    if (current > 0) {
+      setCurrent((prev) => prev - 1);
+    }
+  };
 
   const handleNext = () => {
-    setCurrentPage((prev) => {
-      const nextPage = (prev + 1) % projects.length;
-
-      if (nextPage === 0) {
-        setTimeout(() => {
-          setCurrentView('grid');
-          if (terminalRef.current) {
-            terminalRef.current.scrollTo({ top: terminalRef.current.scrollHeight, behavior: 'smooth' });
-          }
-        }, 600);
-      }
-      return nextPage;
-    });
-  };
-
-  const handlePrevious = () => {
-    setCurrentPage((prev) => (prev - 1 + projects.length) % projects.length);
-  };
-
-  useEffect(() => {
-    if (terminalRef.current) {
-      setTimeout(() => {
-        terminalRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 300);
+    if (current < projects.length) {
+      setCurrent((prev) => prev + 1);
     }
-  }, []);
-
-  const project = projects[currentPage];
+  };
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden font-sans">
 
-      {/* Background Video */}
-      <video
-        src="/backgroundvideo.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      />
-
-      {/* Soft Overlay */}
+      {/* Background */}
+      <video src="/backgroundvideo.mp4" autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover z-0" />
       <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-0" />
 
-      {/* Draggable Terminal */}
+      {/* Terminal */}
       <motion.div
-        ref={terminalRef}
         drag
-        dragConstraints={false}
         dragElastic={0.2}
-        dragMomentum={false}
         whileDrag={{ scale: 1.02 }}
-        initial={{ x: 0, y: 0 }}
-        className="relative z-10 flex flex-col w-[90%] max-w-[1000px] h-[90vh] bg-black/80 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-700 overflow-y-auto"
+        className="relative z-10 flex flex-col w-[90%] max-w-[1000px] h-[90vh] bg-black/80 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-700 overflow-hidden cursor-grab active:cursor-grabbing"
       >
 
-        {/* Back Arrow Button (left) */}
-        <button
-          onClick={onBackToExperience}
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/10 text-gray-300 hover:bg-white/20 hover:text-pink-300 rounded-full p-2 transition z-50"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {/* Arrows */}
+        <button onClick={onBackToExperience} className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-30 p-2 rounded-full transition group z-50">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white group-hover:text-pink-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
-        {/* Forward Arrow Button (right) */}
-        <button
-          onClick={onGoToSkills}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/10 text-gray-300 hover:bg-white/20 hover:text-pink-300 rounded-full p-2 transition z-50"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button onClick={onGoToSkills} disabled={current < projects.length} className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-30 p-2 rounded-full transition group z-50">
+          <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${current === projects.length ? 'text-white group-hover:text-pink-400' : 'text-gray-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
-        {/* Mac Top */}
-        <div className="flex items-center bg-gray-800 px-4 py-3 space-x-2 rounded-t-3xl">
+        {/* Header */}
+        <div className="flex items-center bg-gray-800 px-4 py-2 rounded-t-3xl">
           <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-yellow-400 ml-2 rounded-full"></div>
+          <div className="w-3 h-3 bg-green-500 ml-2 rounded-full"></div>
+          <div className="ml-auto text-green-400 text-xs font-mono animate-bounce pr-4 select-none">
+            ✨ Drag Me ✨
+          </div>
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-5xl text-green-300 text-center py-8 font-bold tracking-wide animate-pulse select-none">
+        <div className="text-4xl md:text-5xl text-green-300 text-center py-6 font-bold tracking-wide animate-pulse">
           Projects 📖✨
-        </h1>
+        </div>
 
         {/* Content */}
-        <div className="flex flex-col items-center justify-center space-y-8 py-8">
+        <div className="flex flex-col items-center justify-center flex-grow overflow-y-auto p-6">
 
-          {currentView === 'spellbook' ? (
-            <>
-              {/* Flipping Card View */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentPage}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.4 }}
-                  className={`p-8 w-[600px] h-[400px] flex flex-col items-center justify-center text-center shadow-2xl rounded-2xl ${project.color}`}
-                >
-                  <div className="text-6xl mb-3">{project.emoji}</div>
-                  <div className="text-2xl font-bold mb-2 text-gray-800">{project.title}</div>
-                  <div className="text-md text-gray-600 mb-6">{project.tech}</div>
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-6 py-2 bg-pink-200 text-gray-800 rounded-full hover:bg-pink-300 transition text-md"
-                  >
-                    View Live 🚀
-                  </a>
-                </motion.div>
-              </AnimatePresence>
+          <AnimatePresence mode="wait">
+            {current < projects.length ? (
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-center"
+              >
+                <ProjectCard {...projects[current]} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="grid"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="w-full flex-grow overflow-y-auto"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                  {projects.map((project, idx) => (
+                    <ProjectCard key={idx} {...project} />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-              {/* Navigation Buttons */}
-              <div className="flex space-x-8">
-                <button
-                  onClick={handlePrevious}
-                  className="px-6 py-2 bg-blue-200 text-gray-800 rounded-full hover:bg-blue-300 transition text-md"
-                >
-                  ◀ Previous
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="px-6 py-2 bg-green-200 text-gray-800 rounded-full hover:bg-green-300 transition text-md"
-                >
-                  Next ▶
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              {/* Projects Grid View */}
-              <div className="flex flex-wrap justify-center items-center gap-8 p-8">
-                {projects.map((project, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`w-[280px] h-[220px] flex flex-col items-center justify-center text-center shadow-2xl rounded-2xl ${project.color} p-4`}
-                  >
-                    <div className="text-4xl mb-2">{project.emoji}</div>
-                    <div className="text-lg font-bold text-gray-800 mb-1">{project.title}</div>
-                    <div className="text-sm text-gray-600 mb-3">{project.tech}</div>
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 bg-pink-200 text-gray-800 rounded-full hover:bg-pink-300 transition text-sm"
-                    >
-                      View Live 🚀
-                    </a>
-                  </motion.div>
-                ))}
-              </div>
-            </>
-          )}
+          {/* Navigation Buttons */}
+          <div className="flex space-x-8 mt-8">
+            <button
+              onClick={handlePrev}
+              disabled={current === 0}
+              className="px-6 py-2 bg-pastel-blue hover:bg-blue-300 text-black font-bold rounded-full transition disabled:opacity-30"
+            >
+              ◀ Previous
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={current === projects.length}
+              className="px-6 py-2 bg-pastel-green hover:bg-green-300 text-black font-bold rounded-full transition disabled:opacity-30"
+            >
+              {current === projects.length - 1 ? 'View All Projects' : current === projects.length ? 'Go to Skills ▶' : 'Next ▶'}
+            </button>
+          </div>
+
         </div>
 
       </motion.div>

@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function ContactTerminal({ onBackToSkills }) {
+export default function ContactTerminal({ onBackToCertifications, onGoToThankYou }) {
+  const [showTyping, setShowTyping] = useState(true);
+  const [showOptions, setShowOptions] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowTyping(false);
+      setShowOptions(true);
+    }, 3000); // 3 seconds typing animation
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
 
       {/* Background Video */}
-      <video
-        src="/backgroundvideo.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      />
+      <video src="/backgroundvideo.mp4" autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover z-0" />
 
-      {/* Soft Black Overlay */}
+      {/* Soft Overlay */}
       <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-0" />
 
-      {/* Terminal Window */}
+      {/* Terminal */}
       <motion.div
         drag
         dragConstraints={false}
@@ -26,81 +31,94 @@ export default function ContactTerminal({ onBackToSkills }) {
         dragMomentum={false}
         whileDrag={{ scale: 1.02 }}
         initial={{ x: 0, y: 0 }}
-        className="relative z-10 flex flex-col w-[90%] max-w-[700px] h-[90vh] bg-black/80 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-700 resize overflow-y-auto cursor-grab active:cursor-grabbing"
+        className="relative z-10 flex flex-col w-[90%] max-w-[800px] h-[85vh] bg-black/80 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-700 overflow-y-auto cursor-grab active:cursor-grabbing"
       >
 
-        {/* Back Arrow */}
-        <button 
-          onClick={onBackToSkills} 
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400 hover:text-pink-300 transition-all duration-300 z-50"
+        {/* Left Arrow */}
+        <button
+          onClick={onBackToCertifications}
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-30 p-2 rounded-full transition z-50 group"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white group-hover:text-pink-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
-        {/* Mac Top Bar */}
+        {/* Right Arrow */}
+        <button
+          onClick={onGoToThankYou}
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-30 p-2 rounded-full transition z-50 group"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white group-hover:text-pink-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Mac Header */}
         <div className="flex items-center bg-gray-800 px-4 py-2 space-x-2 rounded-t-3xl">
           <div className="w-3 h-3 bg-red-500 rounded-full"></div>
           <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
         </div>
 
-        {/* Heading */}
-        <div className="text-4xl md:text-5xl text-green-300 text-center py-6 font-bold tracking-wide animate-pulse select-none">
-          📬 Contact Me
-        </div>
+        {/* Chatbot Content */}
+        <div className="flex flex-col justify-center items-center flex-grow px-8 py-10 font-mono text-green-300 space-y-6 text-lg">
 
-        {/* Contact Info */}
-        <div className="flex flex-col items-center justify-center px-8 space-y-6 mt-6">
+          {/* Typing */}
+          {showTyping ? (
+            <div className="flex space-x-2">
+              <span>Bot is typing</span>
+              <div className="animate-ping w-2 h-2 bg-green-300 rounded-full"></div>
+              <div className="animate-ping w-2 h-2 bg-green-300 rounded-full delay-150"></div>
+              <div className="animate-ping w-2 h-2 bg-green-300 rounded-full delay-300"></div>
+            </div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="text-center"
+            >
+              Hi, I'm <span className="text-pink-400 font-bold">Magical Bot 🤖</span> <br />
+              How would you like to connect with me today? ✨
+            </motion.div>
+          )}
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-black/60 rounded-xl p-6 border border-gray-600 w-full max-w-md text-center"
-          >
-            <p className="text-white text-lg font-semibold">Email Me</p>
-            <a href="mailto:ugawade@hawk.iit.edu" className="text-pink-300 hover:text-pink-400 transition-all">
-              ugawade@hawk.iit.edu
-            </a>
-          </motion.div>
+          {/* Options */}
+          {showOptions && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="flex flex-col items-center space-y-6 mt-8"
+            >
+              <button
+                onClick={() => window.open('mailto:your.email@example.com')}
+                className="hover:text-pink-400 text-white transition-all text-lg"
+              >
+                > 📧 Email
+              </button>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-black/60 rounded-xl p-6 border border-gray-600 w-full max-w-md text-center"
-          >
-            <p className="text-white text-lg font-semibold">LinkedIn</p>
-            <a href="https://linkedin.com/in/utkarsha-gawade17" target="_blank" rel="noopener noreferrer" className="text-pink-300 hover:text-pink-400 transition-all">
-              linkedin.com/in/utkarsha-gawade17
-            </a>
-          </motion.div>
+              <button
+                onClick={() => window.open('https://linkedin.com/in/yourlinkedin', '_blank')}
+                className="hover:text-pink-400 text-white transition-all text-lg"
+              >
+                > 💼 LinkedIn
+              </button>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-black/60 rounded-xl p-6 border border-gray-600 w-full max-w-md text-center"
-          >
-            <p className="text-white text-lg font-semibold">GitHub</p>
-            <a href="https://github.com/Utkarsha-Gawade" target="_blank" rel="noopener noreferrer" className="text-pink-300 hover:text-pink-400 transition-all">
-              github.com/Utkarsha-Gawade
-            </a>
-          </motion.div>
+              <button
+                onClick={() => window.open('https://github.com/yourgithub', '_blank')}
+                className="hover:text-pink-400 text-white transition-all text-lg"
+              >
+                > 🐙 GitHub
+              </button>
+            </motion.div>
+          )}
 
-        </div>
-
-        {/* Final Message */}
-        <div className="text-green-400 font-mono text-center mt-10 animate-pulse">
-          🚀 Let's connect and build something magical!
         </div>
 
       </motion.div>
+
     </div>
   );
 }

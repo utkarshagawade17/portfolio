@@ -51,14 +51,14 @@ export default function AboutMeTerminal({ onGoToExperience }) {
           {/* Education Cards */}
           <div className="flex flex-col space-y-6 w-full max-w-3xl">
             <div className="bg-black/70 border border-gray-600 rounded-2xl p-6 shadow-xl">
-              <h3 className="text-yellow-300 text-xl font-bold">Master of Science in Computer Science</h3>
-              <p className="italic text-gray-400 mt-2">Illinois Institute of Technology</p>
-              <p className="text-gray-400">Illinois, USA | Expected May 2025</p>
+              <h3 className="text-yellow-300 text-xl font-bold font-sans">Master of Science in Computer Science</h3>
+              <p className="italic text-gray-400 mt-2 font-sans">Illinois Institute of Technology</p>
+              <p className="text-gray-400 font-sans">Illinois, USA | Expected May 2025</p>
             </div>
             <div className="bg-black/70 border border-gray-600 rounded-2xl p-6 shadow-xl">
-              <h3 className="text-yellow-300 text-xl font-bold">Bachelor of Technology in Computer Engineering</h3>
-              <p className="italic text-gray-400 mt-2">Savitribai Phule Pune University</p>
-              <p className="text-gray-400">Maharashtra, India | June 2023</p>
+              <h3 className="text-yellow-300 text-xl font-bold font-sans">Bachelor of Technology in Computer Engineering</h3>
+              <p className="italic text-gray-400 mt-2 font-sans">Savitribai Phule Pune University</p>
+              <p className="text-gray-400 font-sans">Maharashtra, India | June 2023</p>
             </div>
           </div>
 

@@ -106,8 +106,8 @@ export default function WorkExperienceTerminal({ onBackToAboutMe, onGoToProjects
               className="bg-black border border-gray-600 rounded-2xl shadow-lg p-6 space-y-3"
             >
               <div className="text-blue-300 font-mono font-bold text-2xl">{exp.title}</div>
-              <div className="text-pink-300 font text-lg">{exp.company}</div>
-              <div className="text-green-300 text-lg">{exp.period}</div>
+              <div className="text-pink-300 font text-lg font-sans">{exp.company}</div>
+              <div className="text-green-300 text-lg font-sans">{exp.period}</div>
 
               {/* Bullet Points */}
               <ul className="list-disc list-inside font-mono text-white text-sm leading-relaxed mt-2 space-y-2">
