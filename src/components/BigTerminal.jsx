@@ -46,7 +46,7 @@ const projects = [
   },
 ];
 
-export default function BigTerminal({ onGoToSkills }) {
+export default function BigTerminal({ onBackToExperience, onGoToSkills }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [currentView, setCurrentView] = useState('spellbook'); // 'spellbook' or 'grid'
   const terminalRef = useRef(null);
@@ -57,13 +57,12 @@ export default function BigTerminal({ onGoToSkills }) {
 
       if (nextPage === 0) {
         setTimeout(() => {
-          setCurrentView('grid'); // Switch to grid after flipping ends
+          setCurrentView('grid');
           if (terminalRef.current) {
             terminalRef.current.scrollTo({ top: terminalRef.current.scrollHeight, behavior: 'smooth' });
           }
         }, 600);
       }
-
       return nextPage;
     });
   };
@@ -107,15 +106,30 @@ export default function BigTerminal({ onGoToSkills }) {
         dragMomentum={false}
         whileDrag={{ scale: 1.02 }}
         initial={{ x: 0, y: 0 }}
-        className="relative z-10 flex flex-col w-[90%] max-w-[1000px] h-[90vh] bg-black/80 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-700 resize overflow-y-auto cursor-grab active:cursor-grabbing"
+        className="relative z-10 flex flex-col w-[90%] max-w-[1000px] h-[90vh] bg-black/80 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-700 overflow-y-auto"
       >
 
-        {/* Drag Me Floating Magical Tag */}
-        <div className="absolute top-3 right-4 text-xs text-pink-300 bg-white/10 px-3 py-1 rounded-full shadow-lg animate-bounce select-none">
-          ✨ Drag Me ✨
-        </div>
+        {/* Back Arrow Button (left) */}
+        <button
+          onClick={onBackToExperience}
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/10 text-gray-300 hover:bg-white/20 hover:text-pink-300 rounded-full p-2 transition z-50"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
 
-        {/* Mac Top Bar */}
+        {/* Forward Arrow Button (right) */}
+        <button
+          onClick={onGoToSkills}
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/10 text-gray-300 hover:bg-white/20 hover:text-pink-300 rounded-full p-2 transition z-50"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Mac Top */}
         <div className="flex items-center bg-gray-800 px-4 py-3 space-x-2 rounded-t-3xl">
           <div className="w-3 h-3 bg-red-500 rounded-full"></div>
           <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
@@ -123,15 +137,16 @@ export default function BigTerminal({ onGoToSkills }) {
         </div>
 
         {/* Title */}
-        <div className="text-4xl md:text-5xl text-green-300 text-center py-6 font-bold tracking-wide animate-pulse select-none">
-          Utkarsha's Magical Spellbook 📖✨
-        </div>
+        <h1 className="text-4xl md:text-5xl text-green-300 text-center py-8 font-bold tracking-wide animate-pulse select-none">
+          Projects 📖✨
+        </h1>
 
-        {/* Terminal Content */}
+        {/* Content */}
         <div className="flex flex-col items-center justify-center space-y-8 py-8">
 
           {currentView === 'spellbook' ? (
             <>
+              {/* Flipping Card View */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentPage}
@@ -155,7 +170,7 @@ export default function BigTerminal({ onGoToSkills }) {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Navigation */}
+              {/* Navigation Buttons */}
               <div className="flex space-x-8">
                 <button
                   onClick={handlePrevious}
@@ -173,7 +188,7 @@ export default function BigTerminal({ onGoToSkills }) {
             </>
           ) : (
             <>
-              {/* Projects Grid */}
+              {/* Projects Grid View */}
               <div className="flex flex-wrap justify-center items-center gap-8 p-8">
                 {projects.map((project, index) => (
                   <motion.div
@@ -197,16 +212,6 @@ export default function BigTerminal({ onGoToSkills }) {
                     </a>
                   </motion.div>
                 ))}
-              </div>
-
-              {/* Go to Skills */}
-              <div className="flex justify-center pb-10">
-                <button
-                  onClick={onGoToSkills}
-                  className="px-8 py-3 bg-green-200 hover:bg-green-300 text-gray-800 rounded-full font-bold text-lg transition"
-                >
-                  Go to Skills 🚀
-                </button>
               </div>
             </>
           )}

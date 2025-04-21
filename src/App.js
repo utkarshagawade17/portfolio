@@ -1,47 +1,42 @@
+// src/App.js
+
 import React, { useState } from 'react';
 import LandingPage from './components/LandingPage';
-import { SmallTerminal } from './components/SmallTerminal';
+import SmallTerminal from './components/SmallTerminal';
+import AboutMeTerminal from './components/AboutMeTerminal';
+import WorkExperienceTerminal from './components/WorkExperienceTerminal';
 import BigTerminal from './components/BigTerminal';
 import SkillsTerminal from './components/SkillsTerminal';
+import ContactTerminal from './components/ContactTerminal';
 import './App.css';
 
-const App = () => {
-  const [step, setStep] = useState('landing'); 
-  // Possible values: 'landing', 'smallTerminal', 'bigTerminal', 'skillsTerminal'
-
-  const handleBeginJourney = () => {
-    setStep('smallTerminal');
-  };
-
-  const handleSmallTerminalComplete = () => {
-    setStep('bigTerminal');
-  };
-
-  const handleGoToSkills = () => {
-    setStep('skillsTerminal');
-  };
+export default function App() {
+  const [step, setStep] = useState('landing');
 
   return (
     <div className="app-container relative">
-
-      {step === 'landing' && (
-        <LandingPage onBeginJourney={handleBeginJourney} />
+      {step === 'landing' && <LandingPage onBeginJourney={() => setStep('smallTerminal')} />}
+      {step === 'smallTerminal' && <SmallTerminal onComplete={() => setStep('aboutMeTerminal')} />}
+      {step === 'aboutMeTerminal' && <AboutMeTerminal onGoToExperience={() => setStep('experienceTerminal')} />}
+      {step === 'experienceTerminal' && (
+        <WorkExperienceTerminal
+          onBackToAboutMe={() => setStep('aboutMeTerminal')}
+          onGoToProjects={() => setStep('projectsTerminal')}
+        />
       )}
-
-      {step === 'smallTerminal' && (
-        <SmallTerminal onComplete={handleSmallTerminalComplete} />
+      {step === 'projectsTerminal' && (
+        <BigTerminal
+          onBackToExperience={() => setStep('experienceTerminal')}
+          onGoToSkills={() => setStep('skillsTerminal')}
+        />
       )}
-
-      {step === 'bigTerminal' && (
-        <BigTerminal onGoToSkills={handleGoToSkills} />
-      )}
-
       {step === 'skillsTerminal' && (
-        <SkillsTerminal />
+        <SkillsTerminal
+          onBackToProjects={() => setStep('projectsTerminal')}
+          onGoToContact={() => setStep('contactTerminal')}
+        />
       )}
-
+      {step === 'contactTerminal' && <ContactTerminal onBackToSkills={() => setStep('skillsTerminal')} />}
     </div>
   );
-};
-
-export default App;
+}
