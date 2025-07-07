@@ -4,25 +4,25 @@ import ProjectCard from './ProjectCard';
 
 const projects = [
   {
-    title: "Magical Portfolio Website",
-    description: "An animated portfolio showcasing magical UI journey.",
-    techStack: ["React.js", "Tailwind CSS", "Framer Motion"],
-    liveLink: "https://your-portfolio-link.com",
-    codeLink: "https://github.com/yourrepo/portfolio",
+    title: "Campus Lost & Found System",
+    description: "A full-stack web app to report and claim lost items on campus using MCP protocol.",
+    techStack: ["Node.js", "Express", "MongoDB", "MCP"],
+    liveLink: "", // Add when deployed
+    codeLink: "https://github.com/utkarshagawade17/CampusLostFoundMCP",
   },
   {
-    title: "AI Blog Generator",
-    description: "Generated blog posts using OpenAI API and Node.js backend.",
-    techStack: ["Node.js", "Express.js", "OpenAI API"],
-    liveLink: "https://your-ai-blog.com",
-    codeLink: "https://github.com/yourrepo/aiblog",
+    title: "SmartMediBot",
+    description: "An AI-powered health assistant bot for reminders, symptoms, and prescriptions.",
+    techStack: ["Python", "Dialogflow", "Flask", "Firebase"],
+    liveLink: "", // Add when deployed
+    codeLink: "https://github.com/utkarshagawade17/smartmedibot",
   },
   {
-    title: "Travel Explorer App",
-    description: "Explore new places using Mapbox, Next.js and Firebase.",
-    techStack: ["Next.js", "Mapbox", "Firebase"],
-    liveLink: "https://your-travel-explorer.com",
-    codeLink: "https://github.com/yourrepo/travelexplorer",
+    title: "ScrumMate",
+    description: "An AI-powered Agile assistant that automates sprint planning and standups.",
+    techStack: ["React", "FastAPI", "MongoDB", "OpenAI API"],
+    liveLink: "", // Add when deployed
+    codeLink: "https://github.com/utkarshagawade17/ScrumMate",
   },
 ];
 

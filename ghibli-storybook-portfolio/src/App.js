@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div className="app-container">
       <video autoPlay loop muted className="bg-video">
-        <source src="/backgroundvideo.mp4" type="video/mp4" />
+        <source src={`${process.env.PUBLIC_URL}/backgroundvideo.mp4`} type="video/mp4" />
       </video>
 
       <div className="flex flex-col items-center justify-center space-y-10 py-10">
