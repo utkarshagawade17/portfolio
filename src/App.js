@@ -15,6 +15,10 @@ export default function App() {
 
   return (
     <div className="app-container relative">
+       {/* Background Video */}
+      <video autoPlay loop muted className="bg-video"> 
+      <source src="/portfolio/backgroundvideo.mp4" type="video/mp4" />
+      </video>
 
       {step === 'landing' && <LandingPage onBeginJourney={() => setStep('smallTerminal')} />}
       {step === 'smallTerminal' && <SmallTerminal onComplete={() => setStep('aboutMeTerminal')} />}
