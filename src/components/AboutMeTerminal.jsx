@@ -36,12 +36,18 @@ export default function AboutMeTerminal({ onGoToExperience }) {
             🌸 About Utkarsha
           </h1>
 
-          {/* About Me Text */}
-          <p className="text-lg md:text-xl max-w-3xl leading-relaxed font-mono">
-            Hi, I'm <span className="text-green-300 font-bold">Utkarsha</span> — a frontend dreamer and fullstack explorer ✨.
-            My passion lies in blending creativity with technology to craft experiences that are intuitive, accessible, and magical.
-            I'm deeply driven by curiosity, empathy, and a commitment to continuous growth.
-          </p>
+          {/* Updated Description */}
+          <div className="text-lg md:text-xl max-w-4xl leading-relaxed space-y-4">
+            <p className="font-sans">
+              I'm <span className="text-green-300 font-bold">Utkarsha</span> – a full-stack engineer who turns caffeine into code and ideas into reality! ☕💻
+            </p>
+            <p className="font-sans">
+              I architect scalable solutions by day and perfect user experiences by night (UI/UX design is my happy addiction!). My work at Global Payments and Wells Fargo taught me that the best code solves real problems with style.
+            </p>
+            <p className="text-pink-300 font-bold text-xl font-sans">
+              <strong>Smart backends, gorgeous frontends, happy endings</strong> – that's how I roll.
+            </p>
+          </div>
 
           {/* Education Title */}
           <h2 className="text-3xl text-green-400 font-bold mt-8 mb-4 flex items-center">
@@ -50,25 +56,38 @@ export default function AboutMeTerminal({ onGoToExperience }) {
 
           {/* Education Cards */}
           <div className="flex flex-col space-y-6 w-full max-w-3xl">
-            <div className="bg-black/70 border border-gray-600 rounded-2xl p-6 shadow-xl">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-black/70 border border-gray-600 rounded-2xl p-6 shadow-xl"
+            >
               <h3 className="text-yellow-300 text-xl font-bold font-sans">Master of Science in Computer Science</h3>
               <p className="italic text-gray-400 mt-2 font-sans">Illinois Institute of Technology</p>
-              <p className="text-gray-400 font-sans">Illinois, USA | Expected May 2025</p>
-            </div>
-            <div className="bg-black/70 border border-gray-600 rounded-2xl p-6 shadow-xl">
+              <p className="text-gray-400 font-sans">Illinois, USA</p>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="bg-black/70 border border-gray-600 rounded-2xl p-6 shadow-xl"
+            >
               <h3 className="text-yellow-300 text-xl font-bold font-sans">Bachelor of Technology in Computer Engineering</h3>
               <p className="italic text-gray-400 mt-2 font-sans">Savitribai Phule Pune University</p>
-              <p className="text-gray-400 font-sans">Maharashtra, India | June 2023</p>
-            </div>
+              <p className="text-gray-400 font-sans">Maharashtra, India</p>
+            </motion.div>
           </div>
 
           {/* Button to Go to Experience */}
-          <button
+          <motion.button
             onClick={onGoToExperience}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className="mt-10 bg-green-300 hover:bg-green-400 text-gray-800 font-bold py-3 px-8 rounded-full text-lg flex items-center space-x-2 transition"
           >
             🚀 Go to Experience
-          </button>
+          </motion.button>
 
         </div>
       </motion.div>

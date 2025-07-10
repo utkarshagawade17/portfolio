@@ -31,7 +31,7 @@ export default function LandingPage({ onBeginJourney }) {
 
       {/* Background Video */}
       <video
-        src="/backgroundvideo.mp4"
+        src={`${process.env.PUBLIC_URL}/backgroundvideo.mp4`}
         autoPlay
         loop
         muted

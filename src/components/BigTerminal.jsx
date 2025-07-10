@@ -7,21 +7,18 @@ const projects = [
     title: "Campus Lost & Found System",
     description: "A full-stack web app to report and claim lost items on campus using MCP protocol.",
     techStack: ["Node.js", "Express", "MongoDB", "MCP"],
-    liveLink: "", // Add when deployed
     codeLink: "https://github.com/utkarshagawade17/CampusLostFoundMCP",
   },
   {
     title: "SmartMediBot",
     description: "An AI-powered health assistant bot for reminders, symptoms, and prescriptions.",
     techStack: ["Python", "Dialogflow", "Flask", "Firebase"],
-    liveLink: "", // Add when deployed
     codeLink: "https://github.com/utkarshagawade17/smartmedibot",
   },
   {
     title: "ScrumMate",
     description: "An AI-powered Agile assistant that automates sprint planning and standups.",
     techStack: ["React", "FastAPI", "MongoDB", "OpenAI API"],
-    liveLink: "", // Add when deployed
     codeLink: "https://github.com/utkarshagawade17/ScrumMate",
   },
 ];
@@ -43,7 +40,7 @@ export default function BigTerminal({ onBackToExperience, onGoToSkills }) {
 
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden font-sans">
-
+      
       {/* Background */}
       <video src="/backgroundvideo.mp4" autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover z-0" />
       <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-0" />
@@ -55,16 +52,23 @@ export default function BigTerminal({ onBackToExperience, onGoToSkills }) {
         whileDrag={{ scale: 1.02 }}
         className="relative z-10 flex flex-col w-[90%] max-w-[1000px] h-[90vh] bg-black/80 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-700 overflow-hidden cursor-grab active:cursor-grabbing"
       >
-
-        {/* Arrows */}
-        <button onClick={onBackToExperience} className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-30 p-2 rounded-full transition group z-50">
+        
+        {/* Left Arrow - Back to Experience */}
+        <button 
+          onClick={onBackToExperience} 
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-70 hover:bg-opacity-90 p-3 rounded-full transition group z-[100] pointer-events-auto"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white group-hover:text-pink-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
-        <button onClick={onGoToSkills} disabled={current < projects.length} className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-30 p-2 rounded-full transition group z-50">
-          <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${current === projects.length ? 'text-white group-hover:text-pink-400' : 'text-gray-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {/* Right Arrow - Next/Skills */}
+        <button 
+          onClick={current === projects.length ? onGoToSkills : handleNext}
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-70 hover:bg-opacity-90 p-3 rounded-full transition group z-[100] pointer-events-auto"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white group-hover:text-pink-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -86,7 +90,7 @@ export default function BigTerminal({ onBackToExperience, onGoToSkills }) {
 
         {/* Content */}
         <div className="flex flex-col items-center justify-center flex-grow overflow-y-auto p-6">
-
+          
           <AnimatePresence mode="wait">
             {current < projects.length ? (
               <motion.div
@@ -122,14 +126,13 @@ export default function BigTerminal({ onBackToExperience, onGoToSkills }) {
             <button
               onClick={handlePrev}
               disabled={current === 0}
-              className="px-6 py-2 bg-pastel-blue hover:bg-blue-300 text-black font-bold rounded-full transition disabled:opacity-30"
+              className="px-6 py-2 bg-blue-400 hover:bg-blue-300 text-black font-bold rounded-full transition disabled:opacity-30 disabled:cursor-not-allowed"
             >
               ◀ Previous
             </button>
             <button
-              onClick={handleNext}
-              disabled={current === projects.length}
-              className="px-6 py-2 bg-pastel-green hover:bg-green-300 text-black font-bold rounded-full transition disabled:opacity-30"
+              onClick={current === projects.length ? onGoToSkills : handleNext}
+              className="px-6 py-2 bg-green-400 hover:bg-green-300 text-black font-bold rounded-full transition"
             >
               {current === projects.length - 1 ? 'View All Projects' : current === projects.length ? 'Go to Skills ▶' : 'Next ▶'}
             </button>

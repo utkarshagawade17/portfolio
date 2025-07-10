@@ -79,8 +79,8 @@ export default function ContactTerminal({ onBackToCertifications, onGoToThankYou
               transition={{ duration: 1 }}
               className="text-center"
             >
-              Hi, I'm <span className="text-pink-400 font-bold">Magical Bot 🤖</span> <br />
-              How would you like to connect with me today? ✨
+              Hi, I'm <span className="text-pink-400 font-bold">Utkarsha's Bot 🤖</span> <br />
+              How would you like to connect with her today? ✨
             </motion.div>
           )}
 
@@ -93,22 +93,22 @@ export default function ContactTerminal({ onBackToCertifications, onGoToThankYou
               className="flex flex-col items-center space-y-6 mt-8"
             >
               <button
-                onClick={() => window.open('mailto:your.email@example.com')}
-                className="hover:text-pink-400 text-white transition-all text-lg"
+                onClick={() => window.open('mailto:utkarshagawade17@gmail.com')}
+                className="hover:text-pink-400 text-white transition-all text-lg font-medium"
               >
                 > 📧 Email
               </button>
 
               <button
-                onClick={() => window.open('https://linkedin.com/in/yourlinkedin', '_blank')}
-                className="hover:text-pink-400 text-white transition-all text-lg"
+                onClick={() => window.open('https://www.linkedin.com/in/utkarsha-gawade17/', '_blank')}
+                className="hover:text-pink-400 text-white transition-all text-lg font-medium"
               >
                 > 💼 LinkedIn
               </button>
 
               <button
-                onClick={() => window.open('https://github.com/yourgithub', '_blank')}
-                className="hover:text-pink-400 text-white transition-all text-lg"
+                onClick={() => window.open('https://github.com/utkarshagawade17', '_blank')}
+                className="hover:text-pink-400 text-white transition-all text-lg font-medium"
               >
                 > 🐙 GitHub
               </button>

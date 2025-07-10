@@ -18,14 +18,7 @@ const ProjectCard = ({ title, description, techStack, liveLink, codeLink }) => {
         </div>
 
         <div className="flex space-x-4 justify-end">
-          <a
-            href={liveLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm bg-pastel-pink hover:bg-pink-400 text-black font-semibold py-2 px-4 rounded-full transition transform hover:-translate-y-1"
-          >
-            🚀 Live
-          </a>
+          
           <a
             href={codeLink}
             target="_blank"

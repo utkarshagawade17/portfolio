@@ -3,40 +3,55 @@ import { motion } from 'framer-motion';
 
 export default function WorkExperienceTerminal({ onBackToAboutMe, onGoToProjects }) {
   const experiences = [
-    {
-      title: "Software Engineer Intern",
-      company: "Global Payments",
-      period: "May 2024 – Aug 2024",
-      description: [
-        "Developed pixel-perfect, reusable UI components using React.js and Tailwind CSS.",
-        "Focused on accessibility improvements (WCAG standards), improving Lighthouse scores.",
-        "Collaborated with UX teams to ensure design consistency.",
-        "Participated in Agile ceremonies and rapid prototyping."
-      ]
-    },
-    {
-      title: "Full Stack Developer",
-      company: "WorqHat",
-      period: "Aug 2022 – Jun 2023",
-      description: [
-        "Built end-to-end web applications using React, Node.js, and MongoDB.",
-        "Designed activity logs and integrated real-time data workflows.",
-        "Developed an Activity Log System featuring data visualizations to enhance user insight and engagement.",
-        "Led UX design for an Emotion Detection System, conducting user research, wireframing, and usability testing to validate design decisions."
-      ]
-    },
-    {
-      title: "Data Science Intern",
-      company: "Excellerate",
-      period: "June 2023 – July 2023",
-      description: [
-        "Performed data cleaning, preprocessing, and exploratory data analysis (EDA) on large datasets.",
-        "Built predictive machine learning models to support business decision-making.",
-        "Collaborated with cross-functional teams to derive actionable insights from data.",
-        "Presented analytical reports and visualizations using Python libraries (Pandas, Matplotlib, Seaborn)."
-      ]
-    }
-  ];
+  {
+    title: "Software Engineer",
+    company: "Global Payments",
+    period: "June 2024 – May 2025",
+    description: [
+      "Developed React.js apps using TypeScript with optimized, reusable components and responsive layouts.",
+      "Improved accessibility and performance (30% faster load times, 25% boost in user satisfaction).",
+      "Integrated Redux and RESTful APIs to streamline frontend-backend data flow.",
+      "Authored unit/integration tests with Jest, raising coverage from 60% to 90% and reducing bugs.",
+      "Automated CI/CD pipelines using GitHub Actions to cut deploy time by 50%."
+    ]
+  },
+  {
+    title: "Software Engineer",
+    company: "Wells Fargo",
+    period: "July 2021 – June 2023",
+    description: [
+      "Built Spring Boot microservices and REST APIs handling 50,000+ daily transactions at 99.9% uptime.",
+      "Optimized batch jobs and Hibernate mappings, reducing processing time by 30%.",
+      "Designed and tuned Oracle PL/SQL schemas and Java persistence layers.",
+      "Improved Java test coverage with JUnit/Mockito by 35% and cut production incidents significantly.",
+      "Led CI/CD automation using Jenkins and Maven for fast, error-free deployments."
+    ]
+  },
+  {
+    title: "Full Stack Developer",
+    company: "WorqHat",
+    period: "September 2019 – June 2021",
+    description: [
+      "Built Spring Boot APIs and Node.js services with React.js frontends for real-time insights.",
+      "Designed responsive UIs with Tailwind CSS and Bootstrap, improving accessibility and speed.",
+      "Created Emotion Detection and Activity Log features with sub-1s latency and 40% higher engagement.",
+      "Dockerized apps and integrated into Jenkins CI/CD pipelines for early and stable releases.",
+      "Reduced user-reported bugs by 50% through cross-browser QA and early testing."
+    ]
+  },
+  {
+    title: "Data Science Intern",
+    company: "Excellerate",
+    period: "June 2023 – July 2023",
+    description: [
+      "Performed data cleaning, preprocessing, and exploratory data analysis (EDA) on large datasets.",
+      "Built machine learning models for prediction and classification using Python (scikit-learn, pandas).",
+      "Created visual reports using Matplotlib and Seaborn to communicate insights effectively.",
+      "Collaborated with cross-functional teams to turn data into actionable business decisions."
+    ]
+  }
+];
+
 
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
