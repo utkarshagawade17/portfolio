@@ -2,12 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const skills = [
-  { category: "Frontend Magic", list: ["React.js ⚛️", "Next.js ⚡", "Tailwind CSS 🎨", "JavaScript ✨", "HTML5 🧡", "CSS3 🎨", "TypeScript 🌀", "Framer Motion 🎥", "Responsive Design 📱"] },
-  { category: "Backend Spells", list: ["Node.js 🚀", "Express.js 🛠️", "MongoDB 🍃", "PostgreSQL 🐘", "Firebase 🔥", "REST APIs 🌐", "JWT Authentication 🔒"] },
-  { category: "Data Science Potions", list: ["Python 🐍", "Pandas 📊", "Numpy 🔢", "Scikit-Learn 🧠", "Matplotlib 📈", "Seaborn 📊", "Machine Learning Models 🤖"] },
-  { category: "Design Charms", list: ["Figma 🎨", "Photoshop 🖼️", "Canva 🖌️", "UI/UX Wireframing ✍️", "Prototyping 🔮"] },
-  { category: "Cloud and APIs", list: ["AWS ☁️", "Vercel 🚀", "OpenAI API 🤖", "Google Cloud Platform ☁️", "Netlify 🌐"] },
-  { category: "Tools and Other Spells", list: ["Git & GitHub 🧹", "VS Code 🖥️", "Jira 🗂️", "Agile Methodologies 🚀", "Linux/Unix Basics 🖥️"] }
+  { category: "Frontend Development", list: ["React.js ⚛️", "TypeScript 🔷", "JavaScript ✨", "HTML5 🧡", "CSS3 🎨", "Tailwind CSS 🎨", "Next.js ⚡", "Responsive Design 📱", "Redux 🔄"] },
+  { category: "Backend Development", list: ["Node.js 🚀", "Express.js 🛠️", "Spring Boot 🍃", "Java ☕", "Python 🐍", "REST APIs 🌐", "GraphQL 📊", "Microservices 🏗️", "JWT Authentication 🔒"] },
+  { category: "Testing & Quality Assurance", list: ["Jest 🧪", "Cypress 🌲", "Selenium 🔍", "React Testing Library ⚛️", "JUnit 📋", "Mockito 🎭", "TestNG 📊", "Playwright 🎭", "Postman 📮", "Test Automation 🤖"] },
+  { category: "Database & Storage", list: ["PostgreSQL 🐘", "MongoDB 🍃", "MySQL 🗄️", "Oracle 🔶", "Redis ⚡", "Database Testing 🧪", "SQL Optimization 📈", "Hibernate 🐻"] },
+  { category: "DevOps & CI/CD", list: ["Jenkins 🔄", "GitHub Actions ⚙️", "Docker 🐳", "AWS ☁️", "Maven 📦", "Git & GitHub 🧹", "CI/CD Pipelines 🚀", "Test Automation Integration 🔗"] },
+  { category: "Development Tools & Methodologies", list: ["VS Code 🖥️", "IntelliJ IDEA 💡", "Jira 🗂️", "Agile/Scrum 🚀", "TDD/BDD 🧪", "Code Reviews 👥", "Performance Testing 📊", "Cross-browser Testing 🌐"]}
 ];
 
 export default function SkillsTerminal({ onBackToProjects, onGoToCertifications }) {
@@ -62,7 +62,7 @@ export default function SkillsTerminal({ onBackToProjects, onGoToCertifications 
         {/* Skills Content */}
         <div className="flex flex-col items-center justify-center px-8 py-8 space-y-8">
           <h1 className="text-4xl md:text-5xl text-green-300 text-center font-bold tracking-wide animate-pulse">
-            📜 Utkarsha's Magical Skills Scroll
+            🛠️ Technical Skills & Expertise
           </h1>
 
           {skills.map((section, idx) => (

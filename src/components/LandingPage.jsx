@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 const rotatingTexts = [
-  "Crafting frontend magic ✨",
+   "Software testing expert 🧪",
   "Full-stack dreams 🚀",
-  "UI/UX enchantment 🎨"
+  "Quality assurance specialist 🎯"
 ];
 
 export default function LandingPage({ onBeginJourney }) {

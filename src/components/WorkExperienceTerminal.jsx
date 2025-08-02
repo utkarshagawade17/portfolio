@@ -4,39 +4,39 @@ import { motion } from 'framer-motion';
 export default function WorkExperienceTerminal({ onBackToAboutMe, onGoToProjects }) {
   const experiences = [
   {
-    title: "Software Engineer",
+    title: "Full Stack Software Engineer & QA Specialist",
     company: "Global Payments",
     period: "June 2024 – May 2025",
     description: [
-      "Developed React.js apps using TypeScript with optimized, reusable components and responsive layouts.",
-      "Improved accessibility and performance (30% faster load times, 25% boost in user satisfaction).",
-      "Integrated Redux and RESTful APIs to streamline frontend-backend data flow.",
-      "Authored unit/integration tests with Jest, raising coverage from 60% to 90% and reducing bugs.",
-      "Automated CI/CD pipelines using GitHub Actions to cut deploy time by 50%."
+      "Developed end-to-end React.js applications with TypeScript, implementing comprehensive test suites using Jest and React Testing Library.",
+      "Built robust backend APIs with Node.js/Express, ensuring 99.9% uptime through rigorous testing and monitoring.",
+      "Designed and executed automated testing pipelines using Selenium and Cypress for cross-browser compatibility.",
+      "Implemented comprehensive QA processes, increasing test coverage from 60% to 95% and reducing production bugs by 40%.",
+      "Led full-stack development while maintaining quality gates through unit, integration, and end-to-end testing strategies."
     ]
   },
   {
-    title: "Software Engineer",
+    title: "Software Engineer & Quality Assurance Lead",
     company: "Wells Fargo",
     period: "July 2021 – June 2023",
     description: [
-      "Built Spring Boot microservices and REST APIs handling 50,000+ daily transactions at 99.9% uptime.",
-      "Optimized batch jobs and Hibernate mappings, reducing processing time by 30%.",
-      "Designed and tuned Oracle PL/SQL schemas and Java persistence layers.",
-      "Improved Java test coverage with JUnit/Mockito by 35% and cut production incidents significantly.",
-      "Led CI/CD automation using Jenkins and Maven for fast, error-free deployments."
+      "Developed and tested Spring Boot microservices handling 50,000+ daily transactions with 99.9% reliability.",
+      "Established comprehensive QA frameworks using JUnit, Mockito, and TestNG for backend service validation.",
+      "Built full-stack solutions integrating React frontends with Java backends, ensuring seamless data flow and performance.",
+      "Implemented automated testing in CI/CD pipelines using Jenkins, reducing deployment failures by 60%.",
+      "Conducted performance testing and load testing, optimizing system response times by 35% through code and database tuning."
     ]
   },
   {
-    title: "Full Stack Developer",
+    title: "Full Stack Developer & QA Engineer",
     company: "WorqHat",
     period: "September 2019 – June 2021",
     description: [
-      "Built Spring Boot APIs and Node.js services with React.js frontends for real-time insights.",
-      "Designed responsive UIs with Tailwind CSS and Bootstrap, improving accessibility and speed.",
-      "Created Emotion Detection and Activity Log features with sub-1s latency and 40% higher engagement.",
-      "Dockerized apps and integrated into Jenkins CI/CD pipelines for early and stable releases.",
-      "Reduced user-reported bugs by 50% through cross-browser QA and early testing."
+      "Built complete full-stack applications using React.js, Node.js, and Spring Boot with comprehensive testing coverage.",
+      "Developed automated testing frameworks for real-time features, ensuring sub-1s latency and 99% accuracy.",
+      "Implemented end-to-end testing solutions using Playwright and Cypress for web application validation.",
+      "Created responsive frontends with thorough cross-browser testing, improving user engagement by 40%.",
+      "Established QA best practices and testing standards, reducing user-reported bugs by 50% through systematic testing approaches."
     ]
   },
   {

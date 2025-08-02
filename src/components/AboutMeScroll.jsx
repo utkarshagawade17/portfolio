@@ -46,13 +46,16 @@ export default function AboutMeScroll() {
           </h1>
           <div className="text-lg text-gray-200 leading-relaxed space-y-4">
             <p>
-              I'm <span className="text-pink-400 font-bold">Utkarsha</span> – a full-stack engineer who turns caffeine into code and ideas into reality! ☕💻
+              I'm <span className="text-pink-400 font-bold">Utkarsha</span> – a software engineer who transforms complex requirements into reliable, tested solutions! 💻🧪
             </p>
             <p>
-              I architect scalable solutions by day and perfect user experiences by night (UI/UX design is my happy addiction!). My work at Global Payments and Wells Fargo taught me that the best code solves real problems with style.
+              I specialize in full-stack development with a passion for software testing and quality assurance. From building robust backend APIs to crafting intuitive frontends, I ensure every line of code meets the highest standards through comprehensive testing strategies.
+            </p>
+            <p>
+              My experience at Global Payments and Wells Fargo taught me that exceptional software isn't just about functionality – it's about reliability, performance, and seamless user experiences validated through rigorous testing.
             </p>
             <p className="text-yellow-300 font-semibold text-xl">
-              <strong>Smart backends, gorgeous frontends, happy endings</strong> – that's how I roll.
+              <strong>Quality code, thorough testing, flawless delivery</strong> – that's how I roll.
             </p>
           </div>
         </div>
@@ -81,7 +84,7 @@ export default function AboutMeScroll() {
 
         {/* Ending Note */}
         <div className="pt-6 text-green-400 font-mono animate-pulse text-lg">
-          Let's create something magical together! ✨
+          Let's build something reliable together! ✨
         </div>
 
       </motion.div>
